@@ -28,7 +28,7 @@ namespace P230_Pronia.Service
         public CookieBasketVM? GetBasket()
         {
             var cookies = _accessor.HttpContext.Request.Cookies["basket"];
-            CookieBasketVM basket;
+            CookieBasketVM basket=new();
             if (cookies != null)
             {
                 basket = JsonConvert.DeserializeObject<CookieBasketVM>(cookies);
@@ -41,9 +41,8 @@ namespace P230_Pronia.Service
                         basket.TotalPrice -= item.Quantity * item.Price;
                     }
                 }
-                return basket;
             }
-        return null;
+                return basket;
         }
         
         public List<Plant> GetPlants() 
